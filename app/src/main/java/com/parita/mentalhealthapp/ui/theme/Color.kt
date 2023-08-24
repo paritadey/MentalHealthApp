@@ -14,3 +14,6 @@ val White100 = Color(0xFFFFFFFF)
 val Brown100 = Color(0xFF1F160F)
 val Brown60 = Color(0xFF5C4033)
 val Brown50 = Color(0xFFD27D2D)
+
+val Green70 = Color(0xFF3D4A26)
+val Brown40 = Color(0xFFFE814B)
