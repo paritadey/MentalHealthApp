@@ -1,4 +1,4 @@
-package com.parita.mentalhealthapp.screens.splash
+package com.parita.mentalhealthapp.screens.Splash
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -23,16 +23,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import com.parita.mentalhealthapp.R
-import com.parita.mentalhealthapp.navigation.Screens
 import com.parita.mentalhealthapp.screens.Splash.AnimatedCircularProgressIndicator
-import com.parita.mentalhealthapp.ui.theme.Brown100
+import com.parita.mentalhealthapp.screens.Splash.SplashViewModel
 import com.parita.mentalhealthapp.ui.theme.Brown40
 import com.parita.mentalhealthapp.ui.theme.Brown50
 import com.parita.mentalhealthapp.ui.theme.Brown60
@@ -41,7 +38,7 @@ import kotlinx.coroutines.delay
 
 
 @Composable
-fun SplashScreen(navController: NavController) {
+fun SplashScreen() {
     var show = remember { mutableStateOf(true) }
     var showScreen = remember { mutableStateOf(true) }
 
@@ -69,7 +66,8 @@ fun SplashScreen(navController: NavController) {
                 }
             }
             if (!showScreen.value) {
-                Column(modifier = Modifier.fillMaxWidth(),
+                Column(
+                    modifier = Modifier.fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
@@ -104,7 +102,7 @@ fun screenThree() {
             Text(
                 modifier = Modifier
                     .fillMaxWidth(),
-                text = "— Albert Camus",
+                text = "Universal Facts",
                 style = TextStyle(
                     fontSize = 14.sp,
                     fontWeight = FontWeight(800),

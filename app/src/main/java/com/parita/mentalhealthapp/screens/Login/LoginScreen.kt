@@ -9,7 +9,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
-import com.parita.mentalhealthapp.navigation.Screens
 
 @Composable
 fun LoginScreen(navController: NavController) {
@@ -19,9 +18,7 @@ fun LoginScreen(navController: NavController) {
         verticalArrangement = Arrangement.SpaceEvenly
     ) {
         Text(text = "Login Screen")
-        Button(onClick = { navController.navigate(Screens.Home.route) }) {
-            Text(text = "to Home Screen")
-        }
+
     }
 
 }
