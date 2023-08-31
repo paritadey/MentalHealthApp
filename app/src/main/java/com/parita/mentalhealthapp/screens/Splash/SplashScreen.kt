@@ -15,6 +15,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -28,8 +29,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.parita.mentalhealthapp.R
-import com.parita.mentalhealthapp.screens.Splash.AnimatedCircularProgressIndicator
-import com.parita.mentalhealthapp.screens.Splash.SplashViewModel
+import com.parita.mentalhealthapp.domain.item.FactItem
 import com.parita.mentalhealthapp.ui.theme.Brown40
 import com.parita.mentalhealthapp.ui.theme.Brown50
 import com.parita.mentalhealthapp.ui.theme.Brown60
@@ -38,9 +38,9 @@ import kotlinx.coroutines.delay
 
 
 @Composable
-fun SplashScreen() {
-    var show = remember { mutableStateOf(true) }
-    var showScreen = remember { mutableStateOf(true) }
+fun SplashScreen(splashViewModel: SplashViewModel) {
+    val show = remember { mutableStateOf(true) }
+    val showScreen = remember { mutableStateOf(true) }
 
     Surface(
         modifier = Modifier
@@ -48,6 +48,7 @@ fun SplashScreen() {
             .background(color = Brown60)
     ) {
         screenOne()
+        val fact = splashViewModel.facts.collectAsState()
         LaunchedEffect(key1 = Unit) {
             delay(5000)
             show.value = false
@@ -71,7 +72,9 @@ fun SplashScreen() {
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
-                    screenThree()
+                    if(fact.value.isNotEmpty()) {
+                        screenThree(fact.value[0])
+                    }
                 }
             }
         }
@@ -79,7 +82,7 @@ fun SplashScreen() {
 }
 
 @Composable
-fun screenThree() {
+fun screenThree(fact: FactItem) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
@@ -93,16 +96,13 @@ fun screenThree() {
             verticalArrangement = Arrangement.Center,
         ) {
             Text(
-                modifier = Modifier
-                    .fillMaxWidth().padding(start=20.dp, top=0.dp, bottom=0.dp, end=20.dp),
-                text = "“In the midst of winter, I found there was within me an invincible summer.”",
+                modifier = Modifier.fillMaxWidth().padding(start = 20.dp, top = 0.dp, bottom = 0.dp, end = 20.dp),
+                text = fact.fact,
                 style = MaterialTheme.typography.bodyLarge.copy(color = Color.White),
                 textAlign = TextAlign.Center,
             )
-            Text(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                text = "Universal Facts",
+            Text(modifier = Modifier.fillMaxWidth().padding(start = 20.dp, top = 8.dp, bottom = 0.dp, end = 20.dp),
+            text = "~ Universal Facts",
                 style = TextStyle(
                     fontSize = 14.sp,
                     fontWeight = FontWeight(800),
