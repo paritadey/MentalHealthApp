@@ -28,6 +28,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.parita.mentalhealthapp.R
 import com.parita.mentalhealthapp.domain.item.FactItem
 import com.parita.mentalhealthapp.ui.theme.Brown40
@@ -38,10 +39,10 @@ import kotlinx.coroutines.delay
 
 
 @Composable
-fun SplashScreen(splashViewModel: SplashViewModel) {
+fun SplashScreen(splashViewModel: SplashViewModel, navController: NavController) {
     val show = remember { mutableStateOf(true) }
     val showScreen = remember { mutableStateOf(true) }
-
+    val goToLogin = remember { mutableStateOf(true) }
     Surface(
         modifier = Modifier
             .fillMaxWidth()
@@ -74,8 +75,15 @@ fun SplashScreen(splashViewModel: SplashViewModel) {
                 ) {
                     if(fact.value.isNotEmpty()) {
                         screenThree(fact.value[0])
+                        LaunchedEffect(key1 = Unit){
+                            delay(7000)
+                            goToLogin.value = false
+                        }
                     }
                 }
+            }
+            if(!goToLogin.value){
+                navController.navigate(R.id.viewLogin)
             }
         }
     }
@@ -96,12 +104,16 @@ fun screenThree(fact: FactItem) {
             verticalArrangement = Arrangement.Center,
         ) {
             Text(
-                modifier = Modifier.fillMaxWidth().padding(start = 20.dp, top = 0.dp, bottom = 0.dp, end = 20.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 20.dp, top = 0.dp, bottom = 0.dp, end = 20.dp),
                 text = fact.fact,
                 style = MaterialTheme.typography.bodyLarge.copy(color = Color.White),
                 textAlign = TextAlign.Center,
             )
-            Text(modifier = Modifier.fillMaxWidth().padding(start = 20.dp, top = 8.dp, bottom = 0.dp, end = 20.dp),
+            Text(modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 20.dp, top = 8.dp, bottom = 0.dp, end = 20.dp),
             text = "~ Universal Facts",
                 style = TextStyle(
                     fontSize = 14.sp,
