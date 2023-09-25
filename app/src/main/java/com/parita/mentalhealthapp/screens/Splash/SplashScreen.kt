@@ -103,10 +103,11 @@ fun screenThree(fact: FactItem) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
         ) {
+            Image(painter = painterResource(id = R.drawable.logomark), contentDescription = "image", contentScale = ContentScale.None)
             Text(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 20.dp, top = 0.dp, bottom = 0.dp, end = 20.dp),
+                    .padding(start = 20.dp, top = 20.dp, bottom = 0.dp, end = 20.dp),
                 text = fact.fact,
                 style = MaterialTheme.typography.bodyLarge.copy(color = Color.White),
                 textAlign = TextAlign.Center,
