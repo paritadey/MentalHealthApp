@@ -1,4 +1,4 @@
-package com.parita.mentalhealthapp.screens.Login
+package com.parita.mentalhealthapp.screens.signup
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,11 +11,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import com.parita.mentalhealthapp.screens.Splash.SplashScreen
-import dagger.hilt.android.AndroidEntryPoint
+import com.parita.mentalhealthapp.screens.Login.LoginScreen
 
-@AndroidEntryPoint
-class LoginFragment : Fragment() {
+
+class SignupFragment : Fragment()  {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -27,10 +26,9 @@ class LoginFragment : Fragment() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    LoginScreen(findNavController())
+                    SignUpScreen(findNavController())
                 }
             }
         }
     }
-
 }

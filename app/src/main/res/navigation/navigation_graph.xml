@@ -9,10 +9,16 @@
         android:label="SplashScreenFragment" >
         <action
             android:id="@+id/viewLogin"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/navigation_graph"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_splashScreenFragment_to_homeScreenFragment"
             app:destination="@id/homeScreenFragment" />
+        <action
+            android:id="@+id/viewSplashToSignUp"
+            app:destination="@id/signupFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -21,9 +27,20 @@
         <action
             android:id="@+id/viewHome"
             app:destination="@id/homeScreenFragment" />
+        <action
+            android:id="@+id/viewSignUp"
+            app:destination="@id/signupFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeScreenFragment"
         android:name="com.parita.mentalhealthapp.screens.Home.HomeScreenFragment"
         android:label="HomeScreenFragment" />
+    <fragment
+        android:id="@+id/signupFragment"
+        android:name="com.parita.mentalhealthapp.screens.signup.SignupFragment"
+        android:label="SignupFragment" >
+        <action
+            android:id="@+id/action_signupFragment_to_homeScreenFragment"
+            app:destination="@id/homeScreenFragment" />
+    </fragment>
 </navigation>

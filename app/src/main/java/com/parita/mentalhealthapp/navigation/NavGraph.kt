@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.parita.mentalhealthapp.screens.Home.HomeScreen
 import com.parita.mentalhealthapp.screens.Login.LoginScreen
+import com.parita.mentalhealthapp.screens.signup.SignUpScreen
 
 @Composable
 fun NavGraph (navController: NavHostController){
@@ -18,6 +19,9 @@ fun NavGraph (navController: NavHostController){
         }
         composable(route = Screens.Home.route){
             HomeScreen(navController)
+        }
+        composable(route = Screens.SignUp.route){
+            SignUpScreen(navController = navController)
         }
     }
 }
