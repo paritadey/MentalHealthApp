@@ -42,7 +42,7 @@ import kotlinx.coroutines.delay
 fun SplashScreen(splashViewModel: SplashViewModel, navController: NavController) {
     val show = remember { mutableStateOf(true) }
     val showScreen = remember { mutableStateOf(true) }
-    val goToLogin = remember { mutableStateOf(true) }
+    val goToWelcome = remember { mutableStateOf(true) }
     Surface(
         modifier = Modifier
             .fillMaxWidth()
@@ -77,13 +77,13 @@ fun SplashScreen(splashViewModel: SplashViewModel, navController: NavController)
                         screenThree(fact.value[0])
                         LaunchedEffect(key1 = Unit){
                             delay(7000)
-                            goToLogin.value = false
+                            goToWelcome.value = false
                         }
                     }
                 }
             }
-            if(!goToLogin.value){
-                navController.navigate(R.id.viewLogin)
+            if(!goToWelcome.value){
+                navController.navigate(R.id.viewWelcomeScreen)
             }
         }
     }

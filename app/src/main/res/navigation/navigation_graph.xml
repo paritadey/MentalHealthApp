@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph"
     app:startDestination="@id/splashScreenFragment">
     <fragment
@@ -19,6 +20,9 @@
         <action
             android:id="@+id/viewSplashToSignUp"
             app:destination="@id/signupFragment" />
+        <action
+            android:id="@+id/viewWelcomeScreen"
+            app:destination="@id/welcomeScreenFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -42,5 +46,24 @@
         <action
             android:id="@+id/action_signupFragment_to_homeScreenFragment"
             app:destination="@id/homeScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/welcomeScreenFragment"
+        android:name="com.parita.mentalhealthapp.screens.welcome.WelcomeScreenFragment"
+        android:label="WelcomeScreenFragment" >
+        <action
+            android:id="@+id/action_welcomeScreenFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/viewOnBoarding"
+            app:destination="@id/onboardingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/onboardingFragment"
+        android:name="com.parita.mentalhealthapp.screens.welcome.OnboardingFragment"
+        android:label="OnboardingFragment" >
+        <action
+            android:id="@+id/viewOnboardingToLogin"
+            app:destination="@id/loginFragment" />
     </fragment>
 </navigation>
