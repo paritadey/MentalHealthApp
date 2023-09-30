@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "291632303021",
+    "project_id": "mentalhealthapp-ade68",
+    "storage_bucket": "mentalhealthapp-ade68.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:291632303021:android:664dde80e2664fe073af24",
+        "android_client_info": {
+          "package_name": "com.parita.mentalhealthapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIeURd4U9UrqXIm_NpFR0RD60MOMR0_B0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
