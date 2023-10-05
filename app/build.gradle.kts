@@ -6,6 +6,7 @@ plugins {
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
     id("androidx.navigation.safeargs.kotlin")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -107,4 +108,7 @@ dependencies {
 
     implementation("com.google.accompanist:accompanist-pager:0.15.0")
     implementation("com.google.accompanist:accompanist-pager-indicators:0.15.0")
+
+    implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
+    implementation("com.google.firebase:firebase-analytics-ktx")
 }
