@@ -34,6 +34,9 @@
         <action
             android:id="@+id/viewSignUp"
             app:destination="@id/signupFragment" />
+        <action
+            android:id="@+id/loginToForgotPassword"
+            app:destination="@id/forgotPasswordFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeScreenFragment"
@@ -66,4 +69,8 @@
             android:id="@+id/viewOnboardingToLogin"
             app:destination="@id/loginFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/forgotPasswordFragment"
+        android:name="com.parita.mentalhealthapp.screens.forgotpassword.ForgotPasswordFragment"
+        android:label="ForgotPasswordFragment" />
 </navigation>

@@ -203,7 +203,7 @@ fun SignUpScreen(navController: NavController) {
                     }else {
                         Icon(
                             painterResource(id = R.drawable.hidden), tint = Color.White,
-                            contentDescription = "Show Password"
+                            contentDescription = "Hide Password"
                         )
                     }
                 }
