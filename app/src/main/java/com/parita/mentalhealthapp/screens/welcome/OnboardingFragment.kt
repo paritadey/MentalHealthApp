@@ -68,22 +68,22 @@ class OnboardingFragment : Fragment() {
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun OnboardingUI(navController: NavController,OnSkipClicked: () -> Unit) {
-    val pagerState = rememberPagerState(pageCount = 3)
+    val pagerState = rememberPagerState(pageCount = 4)
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .background(color = Brown100),
+            .background(color = Brown61),
     ) {
         Text(text = "Skip ",
-            style = MaterialTheme.typography.bodyMedium.copy(color = Brown61),
+            style = MaterialTheme.typography.bodyLarge.copy(color = Color.White),
             textAlign = TextAlign.Center,
-            modifier = Modifier.width(50.dp)
-                .padding(4.dp)
+            modifier = Modifier.fillMaxWidth().height(50.dp)
+                .padding(start=270.dp, top=24.dp)
                 .clickable { OnSkipClicked() })
 
         HorizontalPager(
             state = pagerState, modifier = Modifier
-                .fillMaxSize()
+                .fillMaxWidth()
                 .weight(1f)
         ) { page ->
             OnboardingScreen(page = onboardPages[page])
@@ -96,7 +96,7 @@ fun OnboardingUI(navController: NavController,OnSkipClicked: () -> Unit) {
             activeColor = Color.White
         )
 
-        AnimatedVisibility(visible = pagerState.currentPage == 2) {
+        AnimatedVisibility(visible = pagerState.currentPage == 3) {
             OutlinedButton(
                 shape = RoundedCornerShape(20.dp),
                 modifier = Modifier
@@ -105,8 +105,8 @@ fun OnboardingUI(navController: NavController,OnSkipClicked: () -> Unit) {
                 onClick = {navController.navigate(R.id.viewOnboardingToLogin)},
                 colors = ButtonDefaults.outlinedButtonColors(
                     containerColor = colorResource(
-                        id = R.color.BROWN_61
-                    ), colorResource(id = R.color.white)
+                        id = R.color.BROWN_100
+                    ), colorResource(id = R.color.BROWN_100)
                 )
             ) {
                 Text(text = "Let's Start",

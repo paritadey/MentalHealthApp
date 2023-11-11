@@ -16,4 +16,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "MentalHealthApp"
 include(":app")
- 
+include(":spinewheel")
