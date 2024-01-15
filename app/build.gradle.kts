@@ -120,4 +120,7 @@ dependencies {
     implementation ("androidx.glance:glance-material:1.0.0")
     // For interop APIs with Material 3
     implementation ("androidx.glance:glance-material3:1.0.0")
+
+    //Jetpack WindowsManager
+    implementation("androidx.window:window:1.2.0")
 }

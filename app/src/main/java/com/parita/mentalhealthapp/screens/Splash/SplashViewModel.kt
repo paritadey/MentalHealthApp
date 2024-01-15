@@ -20,7 +20,7 @@ class SplashViewModel @Inject constructor(private val factsUseCases: GetFactsUse
         getFacts()
     }
 
-    private fun getFacts() {
+    fun getFacts() {
         viewModelScope.launch{
             try{
                 val fact = factsUseCases()

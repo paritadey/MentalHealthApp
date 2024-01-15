@@ -22,13 +22,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
 import androidx.navigation.NavController
+import com.parita.mentalhealthapp.MultiWindowViewModel
 import com.parita.mentalhealthapp.R
 import com.parita.mentalhealthapp.domain.item.FactItem
 import com.parita.mentalhealthapp.ui.theme.Brown40
@@ -39,16 +43,23 @@ import kotlinx.coroutines.delay
 
 
 @Composable
-fun SplashScreen(splashViewModel: SplashViewModel, navController: NavController) {
+fun SplashScreen(
+    multiWindow: Boolean,
+    splashViewModel: SplashViewModel,
+    navController: NavController,
+) {
     val show = remember { mutableStateOf(true) }
     val showScreen = remember { mutableStateOf(true) }
     val goToWelcome = remember { mutableStateOf(true) }
+
     Surface(
         modifier = Modifier
             .fillMaxWidth()
             .background(color = Brown60)
     ) {
-        screenOne()
+
+        if(!multiWindow)screenOne()
+        else splashOne()
         val fact = splashViewModel.facts.collectAsState()
         LaunchedEffect(key1 = Unit) {
             delay(5000)
@@ -61,7 +72,8 @@ fun SplashScreen(splashViewModel: SplashViewModel, navController: NavController)
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
-                screenTwo()
+                if(!multiWindow)screenTwo()
+                else splashTwo()
                 LaunchedEffect(key1 = Unit) {
                     delay(5000)
                     showScreen.value = false
@@ -276,5 +288,55 @@ fun screenOne() {
             contentDescription = "image",
             contentScale = ContentScale.None
         )
+    }
+}
+
+@Composable
+fun splashOne(){
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = Brown60),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.SpaceEvenly,
+    ) {
+        AnimatedCircularProgressIndicator(
+            currentValue = 90, maxValue = 100, progressBackgroundColor = Color.White,
+            progressIndicatorColor = Brown50,
+            completedColor = Color.White
+        )
+    }
+}
+
+@Composable
+fun splashTwo() {
+    Surface(
+        modifier = Modifier
+            .fillMaxWidth()
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(color = Green70),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+        ) {
+            Text(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                text = "Fetching Data...",
+                style = MaterialTheme.typography.headlineMedium.copy(color = Color.White),
+                textAlign = TextAlign.Center,
+            )
+            Text(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 16.dp, top = 0.dp, end = 16.dp, bottom = 0.dp),
+                text = "Shake your screen to interact!",
+                style = MaterialTheme.typography.bodySmall.copy(color = Color.White),
+                textAlign = TextAlign.Center,
+            )
+        }
     }
 }

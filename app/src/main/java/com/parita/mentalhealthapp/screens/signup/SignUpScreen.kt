@@ -11,6 +11,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -118,7 +119,7 @@ fun SignUpScreen(navController: NavController) {
         Text(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 0.dp, top = 50.dp, bottom = 0.dp, end = 0.dp),
+                .padding(start = 0.dp, top = 80.dp, bottom = 0.dp, end = 0.dp),
             text = "Sign Up To freud.ai",
             style = MaterialTheme.typography.bodyLarge.copy(color = Color.White),
             textAlign = TextAlign.Center
@@ -126,7 +127,7 @@ fun SignUpScreen(navController: NavController) {
         Text(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 14.dp, top = 48.dp, bottom = 0.dp, end = 0.dp),
+                .padding(start = 14.dp, top = 58.dp, bottom = 0.dp, end = 0.dp),
             text = "Mobile Number",
             style = MaterialTheme.typography.bodySmall.copy(color = Color.White),
             textAlign = TextAlign.Start
