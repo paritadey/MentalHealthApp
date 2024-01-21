@@ -1,7 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MentalHealthApp</string>
-    <string name="app_widget_name">MentalHealth</string>
-    <string name="widget_text">Evaluate your emotional level</string>
-    <string name="widget_button_text">Sync</string>
     <string name="taking_screenshot_is_against_the_security_policy_please_don_t_proceed_with_taking_screenshot">Taking screenshot is against the security policy. Please don\'t proceed with taking screenshot.</string>
 </resources>
