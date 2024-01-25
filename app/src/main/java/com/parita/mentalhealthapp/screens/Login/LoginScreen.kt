@@ -51,7 +51,9 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.Black
 import androidx.compose.ui.graphics.Color.Companion.Gray
+import androidx.compose.ui.graphics.Color.Companion.Transparent
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -94,7 +96,8 @@ fun LoginScreen(navController: NavController) {
     Column(
         modifier = Modifier
             .width(150.dp)
-            .height(200.dp).verticalScroll(scrollState)
+            .height(200.dp)
+            .verticalScroll(scrollState)
             .background(color = Brown100),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
@@ -145,13 +148,7 @@ fun LoginScreen(navController: NavController) {
             },
             isError = emptyPhone,
             placeholder = { Text(text = "Enter your mobile number...", color=Color.White) },
-            colors = TextFieldDefaults.textFieldColors(textColor = White,
-                cursorColor = White,
-                containerColor = Color.Transparent,
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent,
-                disabledIndicatorColor = Color.Transparent
-            ),
+            colors = TextFieldDefaults.colors(focusedTextColor = Transparent, focusedContainerColor = Color.Transparent, focusedIndicatorColor = Color.Transparent, unfocusedIndicatorColor = Color.Transparent, disabledIndicatorColor = Color.Transparent, unfocusedContainerColor = Black),
             keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done, keyboardType = KeyboardType.Number),
             keyboardActions = KeyboardActions(onDone = {
                 emptyPhone = ValidatorClass.checkEmpty(phoneState.text.toString())
@@ -208,13 +205,7 @@ fun LoginScreen(navController: NavController) {
                 }
             },
             placeholder = { Text(text = "Enter your password...", color=Color.White) },
-            colors = TextFieldDefaults.textFieldColors(textColor = White,
-                cursorColor = White,
-                containerColor = Color.Transparent,
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent,
-                disabledIndicatorColor = Color.Transparent
-            ),
+            colors = TextFieldDefaults.colors(focusedTextColor = Transparent, focusedContainerColor = Color.Transparent, focusedIndicatorColor = Color.Transparent, unfocusedIndicatorColor = Color.Transparent, disabledIndicatorColor = Color.Transparent, unfocusedContainerColor = Black),
             keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done),
             keyboardActions = KeyboardActions(onDone = {
                 emptyPassword = ValidatorClass.checkEmpty(passwordState.text.toString())
@@ -311,7 +302,9 @@ fun LoginScreen(navController: NavController) {
         }
         Button(onClick = {navController.navigate(R.id.viewSignUp)},
             colors= ButtonDefaults.outlinedButtonColors(containerColor = Brown100)
-            , modifier = Modifier.fillMaxWidth().padding(14.dp, 12.dp, 14.dp, 0.dp)) {
+            , modifier = Modifier
+                .fillMaxWidth()
+                .padding(14.dp, 12.dp, 14.dp, 0.dp)) {
             Text(
                 text = "Don't have an account?",
                 style = MaterialTheme.typography.bodySmall.copy(color = Color.White),
@@ -322,7 +315,9 @@ fun LoginScreen(navController: NavController) {
         }
         Button(onClick = {navController.navigate(R.id.loginToForgotPassword)},
             colors= ButtonDefaults.outlinedButtonColors(containerColor = Brown100)
-            , modifier = Modifier.fillMaxWidth().padding(14.dp, 0.dp, 14.dp, 0.dp)) {
+            , modifier = Modifier
+                .fillMaxWidth()
+                .padding(14.dp, 0.dp, 14.dp, 0.dp)) {
             Text(text = "Forgot Password ",  style = MaterialTheme.typography.bodyMedium.copy(color = Brown61),
                 textAlign = TextAlign.Center)
         }

@@ -2,7 +2,6 @@ package com.parita.mentalhealthapp
 
 import android.Manifest.permission.READ_EXTERNAL_STORAGE
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-import android.app.Dialog
 import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
@@ -15,9 +14,8 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.provider.Settings
 import android.util.Log
-import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.ComponentActivity
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
@@ -26,7 +24,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.parita.mentalhealthapp.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
@@ -38,6 +35,7 @@ class MainActivity : ScreenshotDetectionActivity() {
     private lateinit var navController: NavController
     private val multiWindowViewModel: MultiWindowViewModel by viewModels()
     private val STORAGE_PERMISSION_CODE = 23
+    private var showDialog = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,9 +57,12 @@ class MainActivity : ScreenshotDetectionActivity() {
     }
 
     override fun onScreenCaptured(path: String?) {
-        val bottomSheetFragment = ScreenshotBottomSheetDialog()
-        bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
-        bottomSheetFragment.isCancelable = true
+        if (showDialog) {
+            val bottomSheetFragment = ScreenshotBottomSheetDialog()
+            bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
+            bottomSheetFragment.isCancelable = true
+            showDialog = false
+        }
         deleteImageFile(path)
     }
 

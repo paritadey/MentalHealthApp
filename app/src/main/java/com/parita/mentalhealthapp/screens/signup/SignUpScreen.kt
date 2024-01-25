@@ -46,6 +46,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.Transparent
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.graphics.Color.Companion.Yellow
 import androidx.compose.ui.layout.ContentScale
@@ -157,14 +158,7 @@ fun SignUpScreen(navController: NavController) {
                 .border(2.dp, Green80),
             shape = RoundedCornerShape(8.dp),
             placeholder = { Text(text = "Enter your mobile number...", color = Color.White) },
-            colors = TextFieldDefaults.textFieldColors(
-                textColor = Color.White,
-                cursorColor = Color.White,
-                containerColor = Color.Transparent,
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent,
-                disabledIndicatorColor = Color.Transparent
-            ),
+            colors = TextFieldDefaults.colors(focusedTextColor = Transparent, focusedContainerColor = Color.Transparent, focusedIndicatorColor = Color.Transparent, unfocusedIndicatorColor = Color.Transparent, disabledIndicatorColor = Color.Transparent, unfocusedContainerColor = Color.Black),
             keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done, keyboardType = KeyboardType.Number),
             keyboardActions = KeyboardActions(onDone = {
                 emptyPhone = checkEmpty(phoneState.text.toString())
@@ -210,14 +204,7 @@ fun SignUpScreen(navController: NavController) {
                 }
             },
             placeholder = { Text(text = "Enter your password...", color = Color.White) },
-            colors = TextFieldDefaults.textFieldColors(
-                textColor = White,
-                cursorColor = White,
-                containerColor = Color.Transparent,
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent,
-                disabledIndicatorColor = Color.Transparent
-            ),
+            colors = TextFieldDefaults.colors(focusedTextColor = Transparent, focusedContainerColor = Color.Transparent, focusedIndicatorColor = Color.Transparent, unfocusedIndicatorColor = Color.Transparent, disabledIndicatorColor = Color.Transparent, unfocusedContainerColor = Color.Black),
             keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done),
             keyboardActions = KeyboardActions(onDone = {
                 emptyPassword = checkEmpty(passwordState.text.toString())
