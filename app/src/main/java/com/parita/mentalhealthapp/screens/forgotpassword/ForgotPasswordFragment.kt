@@ -222,5 +222,5 @@ fun showWheel(context: Context) {
 
 @Composable
 fun ShowImage(drawable:Int) {
-    Image(painter = painterResource(id = R.drawable.sad), contentDescription = "image", contentScale = ContentScale.None, modifier = Modifier.width(150.dp))
+    Image(painter = painterResource(drawable), contentDescription = "image", contentScale = ContentScale.None, modifier = Modifier.width(150.dp))
 }
