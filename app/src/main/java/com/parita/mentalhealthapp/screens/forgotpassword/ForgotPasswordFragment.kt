@@ -8,14 +8,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
@@ -49,6 +46,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import com.parita.mentalhealthapp.R
 import com.parita.mentalhealthapp.ui.theme.Brown100
 import com.parita.mentalhealthapp.ui.theme.Brown60
@@ -70,7 +69,7 @@ class ForgotPasswordFragment : Fragment() {
                         .fillMaxSize()
                         .background(color = Brown60)
                 ) {
-                    showWheel(requireContext())
+                    showWheel(requireContext(), findNavController())
                 }
             }
         }
@@ -79,7 +78,7 @@ class ForgotPasswordFragment : Fragment() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun showWheel(context: Context) {
+fun showWheel(context: Context, navController: NavController) {
     val show = remember { mutableStateOf(false) }
     val sheetState = rememberModalBottomSheetState()
     var isSheetOpened by rememberSaveable { mutableStateOf(false) }
@@ -205,7 +204,7 @@ fun showWheel(context: Context) {
                     textAlign = TextAlign.Center,
                     modifier = Modifier.padding(start=20.dp, top=15.dp, end=20.dp, bottom=0.dp)
                 )
-                Button(onClick = {},
+                Button(onClick = { navController.navigate(R.id.action_forgotPasswordFragment_to_pieChartFragment) },
                     colors= ButtonDefaults.outlinedButtonColors(containerColor = Brown100), modifier = Modifier
                         .fillMaxWidth()
                         .padding(20.dp, 15.dp, 20.dp, 60.dp)) {

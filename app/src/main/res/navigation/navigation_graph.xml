@@ -72,5 +72,13 @@
     <fragment
         android:id="@+id/forgotPasswordFragment"
         android:name="com.parita.mentalhealthapp.screens.forgotpassword.ForgotPasswordFragment"
-        android:label="ForgotPasswordFragment" />
+        android:label="ForgotPasswordFragment" >
+        <action
+            android:id="@+id/action_forgotPasswordFragment_to_pieChartFragment"
+            app:destination="@id/pieChartFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pieChartFragment"
+        android:name="com.parita.mentalhealthapp.screens.forgotpassword.PieChartFragment"
+        android:label="PieChartFragment" />
 </navigation>
