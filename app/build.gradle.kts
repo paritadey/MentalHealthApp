@@ -125,4 +125,5 @@ dependencies {
     implementation("androidx.window:window:1.2.0")
 
     implementation("com.google.android.gms:play-services-instantapps:18.0.1")
+    implementation ("com.google.firebase:firebase-appindexing:20.0.0")
 }
