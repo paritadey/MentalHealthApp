@@ -2,6 +2,13 @@ package com.parita.mentalhealthapp.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
+// on below line we are adding different colors.
+val greenColor = Color(0xFF53EEA3)
+val blueColor = Color(0xFF85C0EE)
+val yellowColor = Color(0xFFF1DB9A)
+val redColor = Color(0xFFF78B83)
+val orangeColor = Color(0xFFF73527)
+
 val Purple80 = Color(0xFFD0BCFF)
 val PurpleGrey80 = Color(0xFFCCC2DC)
 val Purple700=Color(0xFF1C012C)
