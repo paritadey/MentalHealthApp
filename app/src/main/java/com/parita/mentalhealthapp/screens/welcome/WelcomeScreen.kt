@@ -1,5 +1,6 @@
 package com.parita.mentalhealthapp.screens.welcome
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -10,6 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
@@ -24,7 +26,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -35,6 +39,7 @@ import com.parita.mentalhealthapp.ui.theme.onboarding
 @Composable
 fun WelcomeScreen(navController: NavController) {
     val scrollState = rememberScrollState()
+    val context = LocalContext.current
     Surface(
         modifier = Modifier
             .fillMaxWidth()
@@ -87,8 +92,8 @@ fun WelcomeScreen(navController: NavController) {
                     style = MaterialTheme.typography.bodySmall.copy(color = Color.White),
                     textAlign = TextAlign.Center
                 )
-                Text(text = "Sign In ",  style = MaterialTheme.typography.bodyMedium.copy(color = Brown61),
-                    textAlign = TextAlign.Center)
+                ClickableText(text = AnnotatedString("Sign In"),style = MaterialTheme.typography.bodyMedium.copy(color = Brown61),
+                    onClick = {Toast.makeText(context, "Sign in clicked", Toast.LENGTH_SHORT).show()})
             }
         }
     }
