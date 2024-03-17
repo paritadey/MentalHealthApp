@@ -35,9 +35,10 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <!-- Define the data scheme and host that your app handles -->
-                <data
-                    android:host="blog.asdevs.dev"
-                    android:scheme="https" />
+                <data android:scheme="https" />
+                <data android:scheme="http" />
+                <data android:host="com.parita" />
+
 
             </intent-filter>
             <meta-data

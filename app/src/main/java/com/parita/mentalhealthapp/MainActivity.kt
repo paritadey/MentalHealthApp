@@ -15,7 +15,6 @@ import android.provider.MediaStore
 import android.provider.Settings
 import android.util.Log
 import android.widget.Toast
-import androidx.activity.ComponentActivity
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
@@ -24,6 +23,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.google.firebase.appindexing.FirebaseAppIndex
 import com.parita.mentalhealthapp.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
