@@ -12,8 +12,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.navigation.fragment.findNavController
 import com.parita.mentalhealthapp.R
+import com.parita.mentalhealthapp.ui.theme.AnimatedShimmerEffectTheme
 import com.parita.mentalhealthapp.ui.theme.Brown60
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ShimmerFragment : Fragment() {
 
     override fun onCreateView(
@@ -22,11 +25,15 @@ class ShimmerFragment : Fragment() {
     ): View? {
         return ComposeView(requireContext()).apply {
             setContent {
-                Surface(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(color = Brown60)
-                ) {}
+                AnimatedShimmerEffectTheme {
+                    Surface(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .background(color = Brown60)
+                    ) {
+                        AnimatedShimmer()
+                    }
+                }
             }
         }
     }

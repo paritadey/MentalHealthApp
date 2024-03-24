@@ -60,6 +60,9 @@
         <action
             android:id="@+id/viewOnBoarding"
             app:destination="@id/onboardingFragment" />
+        <action
+            android:id="@+id/action_welcomeScreenFragment_to_shimmerFragment"
+            app:destination="@id/shimmerFragment" />
     </fragment>
     <fragment
         android:id="@+id/onboardingFragment"
