@@ -11,9 +11,16 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowForward
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,19 +29,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.ComposeView
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.parita.mentalhealthapp.R
+import com.parita.mentalhealthapp.ui.theme.Brown61
 import com.parita.mentalhealthapp.ui.theme.blueColor
 import com.parita.mentalhealthapp.ui.theme.greenColor
 import com.parita.mentalhealthapp.ui.theme.orangeColor
@@ -49,8 +55,10 @@ class PieChartFragment : Fragment() {
     ): View {
         return ComposeView(requireContext()).apply {
             setContent {
-                Surface(modifier = Modifier.fillMaxSize().background(color = Color.White)) {
-                    CreatePieChart()
+                Surface(modifier = Modifier
+                    .fillMaxSize()
+                    .background(color = Color.White)) {
+                    CreatePieChart(findNavController())
                 }
             }
         }
@@ -71,7 +79,7 @@ val getPieChartData = listOf(
 )
 
 @Composable
-fun CreatePieChart() {
+fun CreatePieChart(navController: NavController) {
     Column(modifier = Modifier.fillMaxSize()) {
         Column(
             modifier = Modifier.fillMaxSize(),
@@ -79,7 +87,9 @@ fun CreatePieChart() {
             verticalArrangement = Arrangement.Center
         ) {
             Column(
-                modifier = Modifier.padding(18.dp).size(320.dp),
+                modifier = Modifier
+                    .padding(18.dp)
+                    .size(320.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
@@ -104,6 +114,27 @@ fun CreatePieChart() {
                             .padding(5.dp), update = {
                             updatePieChartWithData(it, ChartValue)
                         })
+                }
+            }
+            Column(modifier = Modifier
+                .padding(18.dp)
+                .size(300.dp),
+                horizontalAlignment = Alignment.End,){
+                androidx.compose.material3.Button(
+                    onClick = { navController.navigate(R.id.action_pieChartFragment_to_recyclerGridFragment) },
+                    shape = RoundedCornerShape(60.dp),
+                    colors = ButtonDefaults.outlinedButtonColors(containerColor = Brown61),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(76.dp)
+                        .padding(60.dp, 24.dp, 60.dp, 0.dp)
+                ) {
+                    Text(text = "Next ", color = Color.White)
+                    Icon(
+                        imageVector = Icons.Default.ArrowForward,
+                        contentDescription = "sign in",
+                        tint = Color.White
+                    )
                 }
             }
         }

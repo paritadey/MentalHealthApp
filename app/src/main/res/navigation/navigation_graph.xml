@@ -83,9 +83,17 @@
     <fragment
         android:id="@+id/pieChartFragment"
         android:name="com.parita.mentalhealthapp.screens.forgotpassword.PieChartFragment"
-        android:label="PieChartFragment" />
+        android:label="PieChartFragment" >
+        <action
+            android:id="@+id/action_pieChartFragment_to_recyclerGridFragment"
+            app:destination="@id/recyclerGridFragment" />
+    </fragment>
     <fragment
         android:id="@+id/shimmerFragment"
         android:name="com.parita.mentalhealthapp.screens.forgotpassword.ShimmerFragment"
         android:label="ShimmerFragment" />
+    <fragment
+        android:id="@+id/recyclerGridFragment"
+        android:name="com.parita.mentalhealthapp.screens.forgotpassword.RecyclerGridFragment"
+        android:label="RecyclerGridFragment" />
 </navigation>
