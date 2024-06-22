@@ -14,11 +14,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.lazy.staggeredgrid.LazyHorizontalStaggeredGrid
@@ -27,6 +30,13 @@ import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.foundation.lazy.staggeredgrid.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CardElevation
+import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -35,11 +45,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.fragment.app.Fragment
+import com.parita.mentalhealthapp.R
+import com.parita.mentalhealthapp.ui.theme.Brown100
 import kotlin.random.Random
 
 class RecyclerGridFragment : Fragment() {
@@ -55,9 +69,9 @@ class RecyclerGridFragment : Fragment() {
                         .fillMaxSize()
                         .background(color = Color.White)
                 ) {
-                    //ShowHorizontalGridView()
-                  //  ShowVerticalGridView()
-                    LazyHorizontalGridScreen()
+                    ShowHorizontalGridView()
+                    //  ShowVerticalGridView()
+                    //   LazyHorizontalGridScreen()
                 }
             }
         }
@@ -66,6 +80,17 @@ class RecyclerGridFragment : Fragment() {
 
 data class ListItem(val size: Dp, val color: Color)
 data class Item(val height: Dp, val color: Color)
+
+data class StaggeredListItem(
+    val width: Dp,
+    val height: Dp,
+    val textInside: String,
+    val description: String,
+    val btnLevel: String
+)
+
+data class StaggeredItem(val textInside: String)
+
 
 @Composable
 fun RandomColorBox(item: Item) {
@@ -80,38 +105,139 @@ fun RandomColorBox(item: Item) {
 
 @Composable
 fun ShowHorizontalGridView() {
-    val sizeColorList = (1..10).map {
-        ListItem(
-            size = Random.nextInt(100, 300).dp,
-            color = Color(Random.nextLong(0xFFFFFFFF)).copy(alpha = 1f)
+
+    val staggeredList = ArrayList<StaggeredListItem>()
+    staggeredList.add(
+        StaggeredListItem(
+            (258).dp,
+            (190).dp,
+            "Financial Update",
+            "Lets check out the financial status of the world",
+            "View Now"
         )
-    }
+    )
+    staggeredList.add(
+        StaggeredListItem(
+            (252).dp,
+            (140).dp,
+            "Sports Update",
+            "Get in touch with Sports and its latest news",
+            "Show me"
+        )
+    )
+    staggeredList.add(
+        StaggeredListItem(
+            (252).dp,
+            (120).dp,
+            "Weather Update",
+            "World is in difficult time with temperature changes",
+            "Learn more"
+        )
+    )
+    staggeredList.add(
+        StaggeredListItem(
+            (258).dp,
+            (190).dp,
+            "Health Update",
+            "Health is wealth or Health is in danger",
+            "Follow me"
+        )
+    )
+    staggeredList.add(
+        StaggeredListItem(
+            (252).dp,
+            (120).dp,
+            "Stock Market Update",
+            "Stock Market is the real deal",
+            "Invest now"
+        )
+    )
+
 
     LazyHorizontalStaggeredGrid(
-        rows = StaggeredGridCells.Adaptive(250.dp),
-        modifier = Modifier.fillMaxWidth(),
+        rows = StaggeredGridCells.Fixed(2),
         contentPadding = PaddingValues(10.dp),
         horizontalItemSpacing = 10.dp,
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        itemsIndexed(sizeColorList) { index, item ->
-            Box(
-                contentAlignment = Alignment.Center,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .width(item.size)
-                    .background(item.color, shape = RoundedCornerShape(10.dp))
+        itemsIndexed(staggeredList) { index, item ->
+           /* Card(
+                shape = RoundedCornerShape(12.dp),
+                modifier = Modifier.background(MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.5f))
             ) {
                 Text(
-                    text = "$index",
-                    fontSize = 22.sp,
-                    fontWeight = FontWeight.Bold
+                    text = staggeredList[index].textInside,
+                    modifier = Modifier.padding(16.dp),
+                    textAlign = TextAlign.Center,
                 )
+                Text(
+                    text = staggeredList[index].description,
+                    modifier = Modifier.padding(16.dp),
+                    textAlign = TextAlign.Center,
+                )
+                OutlinedButton(
+                    shape = RoundedCornerShape(20.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(60.dp)
+                        .padding(start = 24.dp, top = 14.dp, end = 24.dp, bottom = 8.dp),
+                    onClick = {},
+                    colors = ButtonDefaults.outlinedButtonColors(
+                        containerColor = Brown100
+                    )
+                ) {
+                    Text(
+                        text = staggeredList[index].btnLevel,
+                        style = MaterialTheme.typography.bodySmall.copy(color = Color.White),
+                        textAlign = TextAlign.Center
+                    )
+                }
             }
+*/          ItemCard(staggeredList = staggeredList[index])
         }
 
     }
+}
 
+@Composable
+fun ItemCard(staggeredList: StaggeredListItem) {
+    Box(
+        contentAlignment = Alignment.TopCenter,
+        modifier = Modifier.clip(RoundedCornerShape(10.dp))
+            .background(com.parita.mentalhealthapp.ui.theme.Brown40.copy(alpha = 0.5f))
+    ) {
+        Column(modifier=Modifier.width(252.dp)
+            .height(190.dp)
+                , horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center){
+            Text(
+                text = staggeredList.textInside,
+                modifier = Modifier.padding(16.dp),
+                textAlign = TextAlign.Center,
+            )
+            Text(
+                text = staggeredList.description,
+                modifier = Modifier.padding(16.dp),
+                textAlign = TextAlign.Center,
+            )
+            OutlinedButton(
+                shape = RoundedCornerShape(20.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(60.dp)
+                    .padding(start = 24.dp, top = 14.dp, end = 24.dp, bottom = 8.dp),
+                onClick = {},
+                colors = ButtonDefaults.outlinedButtonColors(
+                    containerColor = Brown100
+                )
+            ) {
+                Text(
+                    text = staggeredList.btnLevel,
+                    style = MaterialTheme.typography.bodySmall.copy(color = Color.White),
+                    textAlign = TextAlign.Center
+                )
+            }
+        }
+    }
 }
 
 @Composable
@@ -135,21 +261,29 @@ fun ShowVerticalGridView() {
         }
     }
 }
+
 @Composable
 fun LazyHorizontalGridScreen() {
+    val staggeredList = ArrayList<StaggeredItem>()
+    staggeredList.add(StaggeredItem("Financial Update"))
+    staggeredList.add(StaggeredItem("Sports Update"))
+    staggeredList.add(StaggeredItem("Weather Update"))
+    staggeredList.add(StaggeredItem("Health Update"))
+    staggeredList.add(StaggeredItem("Stock Market Update"))
+
     LazyHorizontalGrid(
         modifier = Modifier.fillMaxSize(),
         contentPadding = PaddingValues(10.dp),
         verticalArrangement = Arrangement.spacedBy(10.dp),
         horizontalArrangement = Arrangement.spacedBy(10.dp),
-        rows = GridCells.Fixed(2)) {
-        items(20) { index ->
+        rows = GridCells.Fixed(2)
+    ) {
+        items(staggeredList) { index ->
             Box(
                 modifier = Modifier
-                    .fillMaxWidth()
                     .width(100.dp)
                     .background(Color.Gray, shape = RoundedCornerShape(4.dp))
-                    .border(width = 2.dp, color =Color.Black, shape = RoundedCornerShape(4.dp)),
+                    .border(width = 2.dp, color = Color.Black, shape = RoundedCornerShape(4.dp)),
                 contentAlignment = Alignment.Center
             ) {
                 Text(text = "$index", fontSize = 22.sp, fontWeight = FontWeight.Bold)
@@ -157,3 +291,5 @@ fun LazyHorizontalGridScreen() {
         }
     }
 }
+
+

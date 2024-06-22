@@ -126,4 +126,6 @@ dependencies {
 
     implementation("com.google.android.gms:play-services-instantapps:18.0.1")
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+    implementation ("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5")
+    implementation ("dev.shreyaspatil:capturable:1.0.3")
 }
