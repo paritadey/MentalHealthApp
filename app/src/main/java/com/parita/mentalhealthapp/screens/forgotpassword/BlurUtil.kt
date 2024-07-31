@@ -15,14 +15,16 @@ import androidx.annotation.WorkerThread
  * @return Blurred bitmap image
  */
 @WorkerThread
-fun blurBitmap(bitmap: Bitmap, applicationContext: Context, radius: Float = 10f): Bitmap {
+fun blurBitmap(bitmap: Bitmap, applicationContext: Context, radius: Float = 10f): Bitmap? {
     lateinit var rsContext: RenderScript
     try {
 
         // Create the output bitmap
-        val output = Bitmap.createBitmap(
-            bitmap.width, bitmap.height, bitmap.config
-        )
+        val output = bitmap.config?.let {
+            Bitmap.createBitmap(
+                bitmap.width, bitmap.height, it
+            )
+        }
 
         // Blur the image
         rsContext = RenderScript.create(applicationContext, RenderScript.ContextType.DEBUG)
@@ -76,11 +78,11 @@ fun fastblur(sentBitmap: Bitmap, scale: Float, radius: Int): Bitmap? {
     val width = Math.round(sentBitmap.width * scale)
     val height = Math.round(sentBitmap.height * scale)
     sentBitmap = Bitmap.createScaledBitmap(sentBitmap, width, height, false)
-    val bitmap = sentBitmap.copy(sentBitmap.config, true)
+    val bitmap = sentBitmap.config?.let { sentBitmap.copy(it, true) }
     if (radius < 1) {
         return null
     }
-    val w = bitmap.width
+    val w = bitmap!!.width
     val h = bitmap.height
     val pix = IntArray(w * h)
     bitmap.getPixels(pix, 0, w, 0, 0, w, h)
