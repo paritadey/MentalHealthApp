@@ -56,6 +56,11 @@ import com.parita.spinewheel.SpinWheel
 import com.parita.spinewheel.state.rememberSpinWheelState
 import kotlinx.coroutines.launch
 
+/**
+ * Forgot password fragment
+ * @constructor Create empty Forgot password fragment
+ * @see <div><a href="https://img.freepik.com/free-vector/forgot-password-concept-illustration_114360-1123.jpg?size=338&ext=jpg&ga=GA1.1.2008272138.1723248000&semt=ais_hybrid">Forgot password</a></div>
+ */
 class ForgotPasswordFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -76,6 +81,12 @@ class ForgotPasswordFragment : Fragment() {
     }
 }
 
+/**
+ * Show wheel
+ *
+ * @param context
+ * @param navController
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun showWheel(context: Context, navController: NavController) {
@@ -219,6 +230,11 @@ fun showWheel(context: Context, navController: NavController) {
     }
 }
 
+/**
+ * Show image
+ *
+ * @param drawable
+ */
 @Composable
 fun ShowImage(drawable:Int) {
     Image(painter = painterResource(drawable), contentDescription = "image", contentScale = ContentScale.None, modifier = Modifier.width(150.dp))
