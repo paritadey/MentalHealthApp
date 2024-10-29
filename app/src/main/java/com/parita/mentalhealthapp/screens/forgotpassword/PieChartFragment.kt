@@ -119,9 +119,9 @@ fun ComposableBadgeView(navController: NavController){
             }, modifier = Modifier.offset(x=(-6).dp, y=5.dp))
         } ) {   
             Icon(painter = painterResource(id = com.parita.mentalhealthapp.R.drawable.instagram),
-                modifier = Modifier.size(24.dp).clickable {
+                modifier = Modifier.size(24.dp)/*.clickable {
                      navController.navigate(R.id.action_pieChartFragment_to_glassmorphicFragment)
-                }, contentDescription ="Instagram")
+                }*/, contentDescription ="Instagram")
         }
     }
 }
