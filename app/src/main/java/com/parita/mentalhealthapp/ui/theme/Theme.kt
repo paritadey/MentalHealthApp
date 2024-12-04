@@ -41,6 +41,34 @@ private val LightColorScheme = lightColorScheme(
     onSurface = Color(0xFF1C1B1F),
     */
 )
+private val DarkColorPalette = darkColorScheme(
+    primary = Purple200,
+    secondary = Purple700,
+    tertiary = Teal200
+)
+
+private val LightColorPalette = lightColorScheme(
+    primary = Purple500,
+    secondary = Purple700,
+    tertiary = Teal200
+)
+
+@Composable
+fun AnimatedShimmerEffectTheme(
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    content: @Composable() () -> Unit
+) {
+    val colorScheme = when {
+        darkTheme -> DarkColorPalette
+        else -> LightColorPalette
+    }
+    MaterialTheme(
+        colorScheme = colorScheme,
+        typography = Typography,
+        shapes = Shapes,
+        content = content
+    )
+}
 
 @Composable
 fun MentalHealthAppTheme(

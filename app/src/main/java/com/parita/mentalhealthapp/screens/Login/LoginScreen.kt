@@ -76,6 +76,11 @@ import com.parita.mentalhealthapp.ui.theme.Brown61
 import com.parita.mentalhealthapp.ui.theme.Green80
 import com.parita.mentalhealthapp.util.ValidatorClass
 
+/**
+ * Login screen
+ *
+ * @param navController
+ */
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
 fun LoginScreen(navController: NavController) {

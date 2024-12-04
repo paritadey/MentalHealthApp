@@ -85,13 +85,15 @@ fun SplashScreen(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
-                    if(fact.value.isNotEmpty()) {
-                        screenThree(fact.value[0])
-                        LaunchedEffect(key1 = Unit){
+                  //  if(fact.value.isNotEmpty()) {
+                     //   screenThree(fact.value[0])
+                    screenThree("fact.value")
+
+                    LaunchedEffect(key1 = Unit){
                             delay(7000)
                             goToWelcome.value = false
                         }
-                    }
+                  //  }
                 }
             }
             if(!goToWelcome.value){
@@ -102,7 +104,7 @@ fun SplashScreen(
 }
 
 @Composable
-fun screenThree(fact: FactItem) {
+fun screenThree(fact: String) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
@@ -120,7 +122,7 @@ fun screenThree(fact: FactItem) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = 20.dp, top = 20.dp, bottom = 0.dp, end = 20.dp),
-                text = fact.fact,
+                text = "Hello",//fact.fact,
                 style = MaterialTheme.typography.bodyLarge.copy(color = Color.White),
                 textAlign = TextAlign.Center,
             )

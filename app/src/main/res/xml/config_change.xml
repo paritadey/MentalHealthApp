@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<activity xmlns:android="http://schemas.android.com/apk/res/android"
+    android:name=".MainActivity ">
+    <layout
+        android:defaultWidth="450dp"
+        android:defaultHeight="350dp"
+        android:gravity="start|end" />
+</activity>

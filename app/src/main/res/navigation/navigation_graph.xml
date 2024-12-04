@@ -60,6 +60,9 @@
         <action
             android:id="@+id/viewOnBoarding"
             app:destination="@id/onboardingFragment" />
+        <action
+            android:id="@+id/action_welcomeScreenFragment_to_shimmerFragment"
+            app:destination="@id/shimmerFragment" />
     </fragment>
     <fragment
         android:id="@+id/onboardingFragment"
@@ -72,5 +75,32 @@
     <fragment
         android:id="@+id/forgotPasswordFragment"
         android:name="com.parita.mentalhealthapp.screens.forgotpassword.ForgotPasswordFragment"
-        android:label="ForgotPasswordFragment" />
+        android:label="ForgotPasswordFragment" >
+        <action
+            android:id="@+id/action_forgotPasswordFragment_to_pieChartFragment"
+            app:destination="@id/pieChartFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pieChartFragment"
+        android:name="com.parita.mentalhealthapp.screens.forgotpassword.PieChartFragment"
+        android:label="PieChartFragment" >
+        <action
+            android:id="@+id/action_pieChartFragment_to_recyclerGridFragment"
+            app:destination="@id/recyclerGridFragment" />
+        <action
+            android:id="@+id/action_pieChartFragment_to_glassmorphicFragment"
+            app:destination="@id/glassmorphicFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/shimmerFragment"
+        android:name="com.parita.mentalhealthapp.screens.forgotpassword.ShimmerFragment"
+        android:label="ShimmerFragment" />
+    <fragment
+        android:id="@+id/recyclerGridFragment"
+        android:name="com.parita.mentalhealthapp.screens.forgotpassword.RecyclerGridFragment"
+        android:label="RecyclerGridFragment" />
+    <fragment
+        android:id="@+id/glassmorphicFragment"
+        android:name="com.parita.mentalhealthapp.screens.forgotpassword.GlassmorphicFragment"
+        android:label="GlassmorphicFragment" />
 </navigation>
