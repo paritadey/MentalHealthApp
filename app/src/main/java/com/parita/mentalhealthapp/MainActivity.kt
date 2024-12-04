@@ -18,6 +18,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
@@ -30,7 +31,7 @@ import java.io.File
 
 
 @AndroidEntryPoint
-class MainActivity : ScreenshotDetectionActivity() {
+class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
     private val multiWindowViewModel: MultiWindowViewModel by viewModels()
@@ -41,7 +42,6 @@ class MainActivity : ScreenshotDetectionActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        if (!checkStoragePermissions()) requestForStoragePermissions()
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.main_nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
@@ -54,16 +54,6 @@ class MainActivity : ScreenshotDetectionActivity() {
             isInMultiWindowMode -> multiWindowViewModel.setMultiWindowMode(true)  // Activity has entered multi-window mode
             else -> multiWindowViewModel.setMultiWindowMode(false)
         }
-    }
-
-    override fun onScreenCaptured(path: String?) {
-        if (showDialog) {
-            val bottomSheetFragment = ScreenshotBottomSheetDialog()
-            bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
-            bottomSheetFragment.isCancelable = true
-            showDialog = false
-        }
-        deleteImageFile(path)
     }
 
     private fun deleteImageFile(path: String?) {
@@ -120,29 +110,6 @@ class MainActivity : ScreenshotDetectionActivity() {
         }
     }
 
-    private fun requestForStoragePermissions() {
-        //Android is 11 (R) or above
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            try {
-                val intent = Intent()
-                intent.setAction(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
-                val uri = Uri.fromParts("package", this.packageName, null)
-                intent.setData(uri)
-                storageActivityResultLauncher.launch(intent)
-            } catch (e: Exception) {
-                val intent = Intent()
-                intent.setAction(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION)
-                storageActivityResultLauncher.launch(intent)
-            }
-        } else {
-            //Below android 11
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf<String>(WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE),
-                STORAGE_PERMISSION_CODE
-            )
-        }
-    }
 
     private val storageActivityResultLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
